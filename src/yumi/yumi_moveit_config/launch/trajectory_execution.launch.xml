@@ -1,0 +1,26 @@
+<launch>
+
+  <!-- This file makes it easy to include the settings for trajectory execution  -->  
+
+  <!-- Argument to determine if using a gripper or the camera assembly on left arm -->
+  <arg name="two_grippers" default="false"/>
+
+  <!-- Flag indicating whether MoveIt! is allowed to load/unload  or switch controllers -->
+  <arg name="moveit_manage_controllers" default="true"/>
+  <param name="moveit_manage_controllers" value="$(arg moveit_manage_controllers)"/>
+
+  <!-- When determining the expected duration of a trajectory, this multiplicative factor is applied to get the allowed duration of execution -->
+  <param name="trajectory_execution/allowed_execution_duration_scaling" value="50"/> <!-- default 1.2 -->
+
+  <!-- PARAMETER ABOVE AND BELOW CHANGED TO STOP ERROR FROM TRAJECTORY STOP -->
+
+  <!-- Allow more than the expected execution time before triggering a trajectory cancel (applied after scaling) -->
+  <param name="trajectory_execution/allowed_goal_duration_margin" value="50"/> <!-- default 0.5 -->
+  
+  <!-- Load the robot specific controller manager; this sets the moveit_controller_manager ROS parameter -->
+  <arg name="moveit_controller_manager" default="yumi" />
+  <include file="$(find yumi_moveit_config)/launch/$(arg moveit_controller_manager)_moveit_controller_manager.launch.xml">
+    <arg name="two_grippers" value="$(arg two_grippers)"/>
+  </include>
+  
+</launch>

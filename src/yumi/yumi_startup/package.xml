@@ -1,0 +1,17 @@
+<package>
+  <name>yumi_startup</name>
+  <version>0.0.1</version>
+  <description>
+    <p>
+      Files for executing VI sensor
+    </p>
+  </description>
+  <author email="wachterfreddy@gmail.com">Frederick Wachter</author>
+  <maintainer email="wachterfreddy@gmail.com">Frederick Wachter</maintainer>
+  <license>BSD</license>
+
+  <url type="repository">https://github.com/ethz-asl/yumi</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>

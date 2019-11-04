@@ -1,0 +1,97 @@
+#
+# Generated backup file, do not edit.
+#
+# Originally at: /hd0a/TEMP/backup.304209
+# 2016-09-08  10:03:50
+#
+>>SYSTEM_ID:
+14000-500234
+
+>>PRODUCTS_ID:
+RobotWare Version: 6.03.00.00
+SmartGripperV3 Version: 3.10.1
+
+  623-1 Multitasking
+  604-1 MultiMove Coordinated
+  603-1 Absolute Accuracy
+  613-1 Collision Detection
+  709-1 DeviceNet Master/Slave
+  Contact L
+  RobotWare Base
+  608-1 World Zones
+  611-1 Path Recovery
+  612-1 Path Offset
+  841-1 EtherNet/IP Scanner/Adapter
+  1341-1/1520-1 Integrated Vision Interface
+  988-1 RW Add-In Prepared
+  688-1 RobotStudio App Connect
+  617-1 FlexPendant Interface
+  616-1 PC Interface
+  English
+  IRB 14000-0.5/0.5
+  Drive System IRB 14000
+  Hall Sensor Calibration
+  SmartGripperV3.1
+
+>>HOME:
+All public files and directories
+
+>>SYSPAR:
+SYS.cfg
+PROC.cfg
+MMC.cfg
+EIO.cfg
+SIO.cfg
+MOC.cfg
+
+
+>>TASK1: (T_ROB_R,,)
+SYSMOD/ROS_common.sys @ 
+PROGMOD/ROS_motion_r_gripper_rt.mod @ 
+SYSMOD/user.sys @ 
+SYSMOD/HandDriver_right.sys @ 
+SYSMOD/LINKEDM.sys @ HIDDEN
+SYSMOD/ROS_messages.sys @ 
+SYSMOD/ROS_socket.sys @ 
+
+>>TASK2: (T_ROB_L,,)
+SYSMOD/ROS_common.sys @ 
+PROGMOD/ROS_motion_l_gripper_rt.mod @ 
+SYSMOD/user.sys @ 
+SYSMOD/LINKEDM.sys @ HIDDEN
+SYSMOD/ROS_messages.sys @ 
+SYSMOD/HandDriver_left.sys @ 
+SYSMOD/ROS_socket.sys @ 
+
+>>TASK3: (ROS_MotionServer_Left,,)
+SYSMOD/ROS_common.sys @ 
+PROGMOD/ROS_motionServer_l_gripper_rt.mod @ 
+SYSMOD/user.sys @ 
+SYSMOD/ROS_messages.sys @ 
+SYSMOD/ROS_socket.sys @ 
+
+>>TASK4: (ROS_MotionServer_Right,,)
+SYSMOD/ROS_common.sys @ 
+PROGMOD/ROS_motionServer_r_gripper_rt.mod @ 
+SYSMOD/user.sys @ 
+SYSMOD/ROS_messages.sys @ 
+SYSMOD/ROS_socket.sys @ 
+
+>>TASK5: (ROS_StateServer_Left,,)
+PROGMOD/ROS_stateServer_left_gripper.mod @ 
+SYSMOD/ROS_common.sys @ 
+SYSMOD/user.sys @ 
+SYSMOD/ROS_messages.sys @ 
+SYSMOD/HandDriver_left.sys @ 
+SYSMOD/ROS_socket.sys @ 
+
+>>TASK6: (ROS_StateServer_Right,,)
+PROGMOD/ROS_stateServer_right_gripper.mod @ 
+SYSMOD/ROS_common.sys @ 
+SYSMOD/user.sys @ 
+SYSMOD/HandDriver_right.sys @ 
+SYSMOD/ROS_messages.sys @ 
+SYSMOD/ROS_socket.sys @ 
+
+
+>>EOF:

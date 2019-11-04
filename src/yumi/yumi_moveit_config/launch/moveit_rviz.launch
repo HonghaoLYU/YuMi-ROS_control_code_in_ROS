@@ -1,0 +1,19 @@
+<launch>
+
+  <arg name="debug" default="false" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+  <arg     if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+
+  <arg name="two_grippers" default="false"/> <!-- argument to load either two grippers or one gripper -->
+  <arg unless="$(arg two_grippers)" name="type_extension" value="cameraArm"/> <!-- if using camera arm -->
+  <arg     if="$(arg two_grippers)" name="type_extension" value="twoGrippers"/> <!-- if using two grippers -->
+
+  <arg name="config" default="false" />
+  <arg unless="$(arg config)" name="command_args" value="" />
+  <arg     if="$(arg config)" name="command_args" value="-d $(find yumi_moveit_config)/launch/moveit_$(arg type_extension).rviz" />
+  
+  <node name="$(anon rviz)" launch-prefix="$(arg launch_prefix)" pkg="rviz" type="rviz" respawn="false" args="$(arg command_args)" output="screen">
+    <rosparam command="load" file="$(find yumi_moveit_config)/config/kinematics.yaml"/>
+  </node>
+
+</launch>

@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!-- 
+  PROGRAMMER: Frederick Wachter
+  DATE CREATED: 2016-05-30
+  PURPOSE: Provide colors for the different objects in the YuMi workspace
+-->
+
+<robot name="yumi" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Include VI Sensor Macro -->
+  <xacro:include filename="$(find rotors_description)/urdf/component_snippets.xacro" />
+
+  <xacro:macro name="camera_assembly" params="parent vi_namespace enable_cameras enable_depth enable_ground_truth PI">
+
+    <!--                         -->
+    <!--     CAMERA ASSEMBLY     -->
+    <!--                         -->
+    
+    <joint name="${parent}_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="camera_assembly"/>
+      <origin rpy="0 0 0" xyz="0 0 0.007"/>
+    </joint>
+
+    <link name="camera_assembly">
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0.025 0.04"/>
+        <geometry>
+          <box size="0.16 0.17 0.08"/>
+        </geometry>
+        <material name="Grey"/>
+      </collision>
+    </link>
+
+    <joint name="camera_holder_assembly" type="fixed">
+      <parent link="camera_assembly"/>
+      <child link="camera_holder"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+
+    <link name="camera_holder">
+      <!--                                 -->
+      <!-- Need to add inertial properties -->
+      <!--      <inertial></inertial>      -->
+      <!--     Note Created: 2015-05-23    -->
+      <!--                                 -->
+      <visual>
+        <origin rpy="0 0 0" xyz="-0.0377 -0.0129 0"/>
+        <geometry>
+          <mesh filename="package://yumi_description/meshes/camera/Camera_Holder.stl"/>
+        </geometry>
+        <material name="Drexel_Blue"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="-0.0377 -0.0129 0"/>
+        <geometry>
+          <mesh filename="package://yumi_description/meshes/camera/Camera_Holder.stl"/>
+        </geometry>
+        <material name="Drexel_Blue"/>
+      </collision>
+    </link>
+
+    <link name="sr300_sensor">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://yumi_description/meshes/camera/Camera_F200.stl"/>
+        </geometry>
+        <material name="Drexel_Blue"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://yumi_description/meshes/camera/Camera_F200.stl"/>
+        </geometry>
+        <material name="Drexel_Blue"/>
+      </collision>
+    </link>
+    <xacro:vi_sensor_macro
+      namespace="${vi_namespace}"
+      parent_link="camera_holder"
+      enable_cameras="${enable_cameras}"
+      enable_depth="${enable_depth}"
+      enable_ground_truth="${enable_ground_truth}">
+      <origin xyz="-0.003 -0.0138 0.02825" rpy="${PI} ${-PI/2 + 0.0063} ${PI/2}" />
+    </xacro:vi_sensor_macro>
+
+    <joint name="creative_to_holder" type="fixed">
+      <parent link="camera_holder"/>
+      <child link="sr300_sensor"/>
+      <origin rpy="0 0 0" xyz="-0.002 0.0765 0.0335"/>
+    </joint>
+
+  </xacro:macro>
+
+</robot>
+
+

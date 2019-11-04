@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!-- 
+  PROGRAMMER: Frederick Wachter
+  DATE CREATED: 2016-05-30
+  LAST MODIFIED: 2016-05-30
+  PURPOSE: Provide colors for the different objects in the YuMi workspace
+  REFERENCE: https://github.com/rtkg/yumi
+-->
+
+<robot>
+
+  <material name="Black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+
+  <material name="Blue">
+    <color rgba="0.0 0.0 0.8 1.0"/>
+  </material>
+
+  <material name="Green">
+    <color rgba="0.0 0.8 0.0 1.0"/>
+  </material>
+
+  <material name="Grey">
+    <color rgba="0.5 0.5 0.5 1.0"/>
+  </material>
+
+  <material name="Light_Grey">
+    <color rgba="0.8 0.8 0.8 1.0"/>
+  </material>
+
+  <material name="Ivory">
+    <color rgba="1.0 1.0 0.94 1.0"/>
+  </material>
+
+  <material name="Orange">
+    <color rgba="${255/255} ${108/255} ${10/255} 1.0"/>
+  </material>
+
+  <material name="Brown">
+    <color rgba="${222/255} ${207/255} ${195/255} 1.0"/>
+  </material>
+
+  <material name="Red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+  </material>
+
+  <material name="White">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+  </material>
+
+  <material name="Drexel_Blue">
+    <color rgba="0.027 0.161 0.302 1.0"/>
+  </material>
+
+  <material name="SeeThrough">
+    <color rgba="0 0 0 0"/>
+  </material>
+  
+  <material name="Transparent">
+    <color rgba="1.0 1.0 1.0 0.5"/>
+  </material>
+
+</robot>
+
+

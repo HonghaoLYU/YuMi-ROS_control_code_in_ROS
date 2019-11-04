@@ -1,0 +1,85 @@
+MODULE ROS_common(SYSMODULE)
+
+! Software License Agreement (BSD License)
+!
+! Copyright (c) 2012, Edward Venator, Case Western Reserve University
+! Copyright (c) 2012, Jeremy Zoss, Southwest Research Institute
+! All rights reserved.
+!
+! Redistribution and use in source and binary forms, with or without modification,
+! are permitted provided that the following conditions are met:
+!
+!   Redistributions of source code must retain the above copyright notice, this
+!       list of conditions and the following disclaimer.
+!   Redistributions in binary form must reproduce the above copyright notice, this
+!       list of conditions and the following disclaimer in the documentation
+!       and/or other materials provided with the distribution.
+!   Neither the name of the Case Western Reserve University nor the names of its contributors
+!       may be used to endorse or promote products derived from this software without
+!       specific prior written permission.
+!
+! THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+! EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+! OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+! SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+! INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+! TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+! BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+! CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+! WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+! ----------------------------------------------
+! -------------- DATA STRUCTURES ---------------
+! ----------------------------------------------
+RECORD ROS_joint_trajectory_pt
+	jointtarget joint_pos;
+	num duration;
+ENDRECORD
+
+RECORD ROS_gripper_trajectory_pt
+	num gripper_pos;
+ENDRECORD
+
+! ----------------------------------------------
+! ---------- MOVEMENT GROUP VARIABLES ----------
+! ----------------------------------------------
+! "..._lock" variables should use TestAndSet read/write protection to prevent conflicts
+
+PERS num ROS_trajectory_size_left  := 0; ! size of trajectory point array
+PERS bool ROS_new_trajectory_left  := FALSE; ! flag used to indicate when a new trajectory is available for reading
+PERS bool ROS_trajectory_lock_left := FALSE; ! flag used to prevent conflicts when reading
+PERS ROS_joint_trajectory_pt ROS_trajectory_left{MAX_TRAJ_LENGTH}; ! trajectory point array
+
+PERS num ROS_trajectory_size_right  := 0; ! size of trajectory point array
+PERS bool ROS_new_trajectory_right  := FALSE; ! flag used to indicate when a new trajectory is available for reading
+PERS bool ROS_trajectory_lock_right := FALSE; ! flag used to prevent conflicts when reading
+PERS ROS_joint_trajectory_pt ROS_trajectory_right{MAX_TRAJ_LENGTH}; ! trajectory point array
+
+PERS num ROS_trajectory_size_gripper_l  := 10; ! size of trajectory point array
+PERS bool ROS_new_trajectory_gripper_l  := TRUE; ! flag used to indicate when a new trajectory is available for reading
+PERS bool ROS_trajectory_lock_gripper_l := FALSE; ! flag used to prevent conflicts when reading
+PERS ROS_gripper_trajectory_pt ROS_trajectory_gripper_l{MAX_TRAJ_LENGTH}; ! trajectory point array
+
+PERS num ROS_trajectory_size_gripper_r  := 10; ! size of trajectory point array
+PERS bool ROS_new_trajectory_gripper_r  := FALSE; ! flag used to indicate when a new trajectory is available for reading
+PERS bool ROS_trajectory_lock_gripper_r := FALSE; ! flag used to prevent conflicts when reading
+PERS ROS_gripper_trajectory_pt ROS_trajectory_gripper_r{MAX_TRAJ_LENGTH}; ! trajectory point array
+
+! ----------------------------------------------
+! ----------------- CONSTANTS ------------------
+! ----------------------------------------------
+CONST num MAX_TRAJ_LENGTH   := 100;
+CONST num GRIPPER_CLOSE_TOL := 1; ! ! gripper tolerance for assuming closing hand
+CONST speeddata SLOW_SPEED  := v100; ! slow speed for arm
+CONST speeddata NORM_SPEED  := v500; ! normal speed for arm
+CONST speeddata MED_SPEED   := v1000; ! medium speed for arm
+CONST speeddata FAST_SPEED  := v1500; ! fast speed for arm
+
+! ----------------------------------------------
+! ------------- PERSISTANT VALUES --------------
+! ----------------------------------------------
+PERS num cycle_time := 0.02;
+
+ENDMODULE
+
+

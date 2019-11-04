@@ -1,0 +1,52 @@
+<launch>
+
+  <!-- initialize arguments -->
+  <arg name="debug" default="false"/> <!-- by default, we are not in debug mode -->
+  <arg name="rviz" default="false"/> <!-- argument to load rviz or not -->
+  <arg name="two_grippers" default="false"/> <!-- argument to load either two grippers or one gripper -->
+  <arg name="joint_state_pub" default="true"/> <!-- argument to execute joint state publisher node or not -->
+  <arg name="enable_cameras" default="false"/> <!-- argument to enable/disable cameras -->
+  <arg name="enable_depth" default="false"/> <!-- argument to enable/disable depth on camera -->
+  <arg name="enable_ground_truth" default="false"/> <!-- argument to enable/disable ground truth for cameras -->
+
+  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+  <include file="$(find yumi_moveit_config)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+    <arg name="two_grippers" value="$(arg two_grippers)"/>
+    <arg name="enable_cameras" value="$(arg enable_cameras)"/>
+    <arg name="enable_depth" value="$(arg enable_depth)"/>
+    <arg name="enable_ground_truth" value="$(arg enable_ground_truth)"/>
+  </include>
+
+  <!-- If needed, broadcast static tf for robot root --> <!-- What is this? | Date: 2016-06-22 -->  
+
+  <!-- We do not have a robot connected, so publish fake joint states -->
+  <group if="$(arg joint_state_pub)">
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+      <param name="/use_gui" value="false"/>
+      <rosparam param="/source_list">[/move_group/fake_controller_joint_states]</rosparam>
+    </node>
+  </group>
+
+  <!-- Given the published joint states, publish tf for the robot links -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
+
+  <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
+  <include file="$(find yumi_moveit_config)/launch/move_group.launch">
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="fake_execution" value="true"/>
+    <arg name="info" value="true"/>
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="two_grippers" value="$(arg two_grippers)"/>
+  </include>
+
+  <!-- Run Rviz and load the default config to see the state of the move_group node -->
+  <group if="$(arg rviz)">
+    <include file="$(find yumi_moveit_config)/launch/moveit_rviz.launch">
+      <arg name="config" value="true"/>
+      <arg name="debug" value="$(arg debug)"/>
+      <arg name="two_grippers" value="$(arg two_grippers)"/>
+    </include>
+  </group>
+
+</launch>

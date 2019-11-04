@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!-- 
+  PROGRAMMER: Frederick Wachter
+  DATE CREATED: 2016-05-30
+  PURPOSE: Import necessary files to build YuMi URDF with workspace
+
+  NECESSARY INPUTS FOR VI SENSOR:
+    - enable_cameras: true/false
+    - enable_depth: true/false
+    - enable_ground_truth: true/false
+-->
+
+<robot name="yumi" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:arg name="two_grippers" default="true"/> <!-- initialize argument for determining if using two grippers or not -->
+
+  <!--                  		   -->
+  <!--         IMPORTS         -->
+  <!--                  		   -->
+
+  <!-- Import Colors -->
+  <xacro:include filename="$(find yumi_description)/urdf/materials.xacro"/>
+
+  <!-- Import Constants and Modeling Macros -->
+  <xacro:include filename="$(find yumi_description)/urdf/utilities.xacro"/>
+
+  <!-- Import Workspace -->
+  <xacro:include filename="$(find yumi_description)/urdf/workspace.xacro"/>
+
+  <!-- Import YuMi -->
+  <xacro:include filename="$(find yumi_description)/urdf/yumi.xacro"/>
+
+  <!-- Import Right Servo Gripper -->
+  <xacro:include filename="$(find yumi_description)/urdf/yumi_servo_gripper.xacro"/>
+
+    <!-- Import Left Servo Gripper -->
+  <xacro:include filename="$(find yumi_description)/urdf/yumi_servo_gripper_left.xacro"/>
+
+  <!-- Import Camera Assembly -->
+  <!--<xacro:include filename="$(find yumi_description)/urdf/camera_assembly.xacro"/>-->
+
+  <!-- Import Gazebo Plugins -->
+  <xacro:include filename="$(find yumi_description)/urdf/gazebo.urdf.xacro"/>
+
+
+  <!--                  		   -->
+  <!--     LINK DEFINITIONS    -->
+  <!--                  		   -->
+
+  <!-- Fixed Link for Entire Workspace -->
+  <link name="workspace"/>
+
+
+  <!--                  		   -->
+  <!--    MACRO DEFINITIONS    -->
+  <!--                  		   -->
+
+  <!-- Set defaults -->
+
+  <!-- Define Macros for Workspace Import -->
+  <xacro:workspace stand_parent="yumi_body" table_parent="workspace"></xacro:workspace>
+
+  <!-- Define Macros for YuMi Import -->
+  <xacro:yumi name="yumi" hardware_interface="${hardware_interface}" parent="table_main">
+	  <origin xyz="0 0 0" rpy="0 0 0"/> <!-- Bring bottom of YuMi to (x,y) plane -->
+  </xacro:yumi>
+
+  <!-- Define Macros for Right Servo Gripper Import -->
+  <xacro:yumi_servo_gripper name="gripper_r" hardware_interface="${hardware_interface}" parent="yumi_link_7_r">
+  	<origin xyz="0 0 0.007" rpy="0 0 ${PI}"/>
+  </xacro:yumi_servo_gripper>
+  
+  <xacro:unless value="$(arg two_grippers)">
+    <!-- Define Macros for Camera Assembly Import -->
+    <!--<xacro:camera_assembly parent="yumi_link_7_l" vi_namespace="${vi_namespace}" PI="${PI}" 
+      enable_cameras="$(arg enable_cameras)" enable_depth="$(arg enable_depth)" enable_ground_truth="$(arg enable_ground_truth)"
+    />-->
+  </xacro:unless>
+  <xacro:if value="$(arg two_grippers)">
+    <!-- Define Macros for Left Servo Gripper Import -->
+    <xacro:yumi_servo_gripper_left name="gripper_l" hardware_interface="${hardware_interface}" parent="yumi_link_7_l">
+      <origin xyz="0 0 0.007" rpy="0 0 ${PI}"/>
+    </xacro:yumi_servo_gripper_left>
+  </xacro:if>
+
+
+</robot>
+
+

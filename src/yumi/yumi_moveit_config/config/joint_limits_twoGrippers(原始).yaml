@@ -1,0 +1,94 @@
+# joint_limits.yaml allows the dynamics properties specified in the URDF to be overwritten or augmented as needed
+# Specific joint properties can be changed with the keys [max_position, min_position, max_velocity, max_acceleration]
+# Joint limits can be turned off with [has_velocity_limits, has_acceleration_limits]
+joint_limits:
+  yumi_joint_1_l:
+    has_velocity_limits: true
+    max_velocity: 3.14159265359
+    has_acceleration_limits: false
+    max_acceleration: 0
+  yumi_joint_1_r:
+    has_velocity_limits: true
+    max_velocity: 3.14159265359
+    has_acceleration_limits: false
+    max_acceleration: 0
+  yumi_joint_2_l:
+    has_velocity_limits: true
+    max_velocity: 3.14159265359
+    has_acceleration_limits: false
+    max_acceleration: 0
+  yumi_joint_2_r:
+    has_velocity_limits: true
+    max_velocity: 3.14159265359
+    has_acceleration_limits: false
+    max_acceleration: 0
+  yumi_joint_3_l:
+    has_velocity_limits: true
+    max_velocity: 3.14159265359
+    has_acceleration_limits: false
+    max_acceleration: 0
+  yumi_joint_3_r:
+    has_velocity_limits: true
+    max_velocity: 3.14159265359
+    has_acceleration_limits: false
+    max_acceleration: 0
+  yumi_joint_4_l:
+    has_velocity_limits: true
+    max_velocity: 6.98131700798
+    has_acceleration_limits: false
+    max_acceleration: 0
+  yumi_joint_4_r:
+    has_velocity_limits: true
+    max_velocity: 6.98131700798
+    has_acceleration_limits: false
+    max_acceleration: 0
+  yumi_joint_5_l:
+    has_velocity_limits: true
+    max_velocity: 6.98131700798
+    has_acceleration_limits: false
+    max_acceleration: 0
+  yumi_joint_5_r:
+    has_velocity_limits: true
+    max_velocity: 6.98131700798
+    has_acceleration_limits: false
+    max_acceleration: 0
+  yumi_joint_6_l:
+    has_velocity_limits: true
+    max_velocity: 6.98131700798
+    has_acceleration_limits: false
+    max_acceleration: 0
+  yumi_joint_6_r:
+    has_velocity_limits: true
+    max_velocity: 6.98131700798
+    has_acceleration_limits: false
+    max_acceleration: 0
+  yumi_joint_7_l:
+    has_velocity_limits: true
+    max_velocity: 3.14159265359
+    has_acceleration_limits: false
+    max_acceleration: 0
+  yumi_joint_7_r:
+    has_velocity_limits: true
+    max_velocity: 3.14159265359
+    has_acceleration_limits: false
+    max_acceleration: 0
+  gripper_r_joint_r:
+    has_position_limits: true
+    min_position: 0.0
+    max_position: 0.024
+    has_velocity_limits: true
+    max_velocity: 0.02
+    has_acceleration_limits: false
+    has_jerk_limits: false
+    has_effort_limits: true
+    max_effor: 300
+  gripper_l_joint_r:
+    has_position_limits: true
+    min_position: 0.0
+    max_position: 0.024
+    has_velocity_limits: true
+    max_velocity: 0.02
+    has_acceleration_limits: false
+    has_jerk_limits: false
+    has_effort_limits: true
+    max_effor: 300

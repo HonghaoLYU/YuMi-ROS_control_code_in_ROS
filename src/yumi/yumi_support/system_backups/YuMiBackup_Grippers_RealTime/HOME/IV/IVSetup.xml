@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewItems xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Cameras>
+    <Camera>
+      <Jobs>
+        <Job>
+          <JobData />
+        </Job>
+        <Job>
+          <JobData />
+        </Job>
+      </Jobs>
+    </Camera>
+    <Camera>
+      <Jobs>
+        <Job>
+          <JobData />
+        </Job>
+        <Job>
+          <JobData />
+        </Job>
+      </Jobs>
+    </Camera>
+  </Cameras>
+</ViewItems>

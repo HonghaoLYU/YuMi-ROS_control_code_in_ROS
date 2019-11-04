@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!-- 
+  PROGRAMMER: Honghao Lv
+  DATE CREATED: 2019-04-20
+  LAST MODIFIED: 2019-04-21
+  PURPOSE: Build the workspace around YuMi
+-->
+
+<robot name="yumi" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="workspace" params="stand_parent table_parent">
+
+    <!--                         -->
+    <!--          TABLE          -->
+    <!--                         -->
+    <joint name="table_main_to_${table_parent}" type="fixed">
+      <parent link="${table_parent}"/>
+      <child link="table_main"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+
+    <link name="table_main">
+      <visual>
+        <geometry>
+          <box size="1.2 0.8 0.026"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0.05 0 -0.115"/>
+        <material name="Ivory"/>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="1.2 0.8 0.026"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0.05 0 -0.115"/>
+        <material name="Ivory"/>
+      </collision>
+    </link>
+
+    <joint name="box_to_${table_parent}" type="fixed">
+      <parent link="${table_parent}"/>
+      <child link="box"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+
+    <!--<link name="box">
+      <visual>
+        <origin rpy="0 0 0" xyz="0.25 -0.15 -0.115"/>
+        <geometry>
+          <mesh filename="package://yumi_description/meshes/workspace/box_su.stl"/>
+        </geometry>
+        <material name="Ivory"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0.25 -0.15 -0.115"/>
+        <geometry>
+          <mesh filename="package://yumi_description/meshes/workspace/box_su.stl"/>
+        </geometry>
+        <material name="Ivory"/>
+      </collision>
+    </link>-->
+
+        <link name="box">
+      <visual>
+        <origin rpy="0 0 0" xyz="0.55 0 -0.085"/>
+        <geometry>
+          <box size="0.2 0.55 0.04"/>
+        </geometry>
+        <material name="Ivory"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0.55 0 -0.085"/>
+        <geometry>
+          <box size="0.2 0.55 0.04"/>
+        </geometry>
+        <material name="Ivory"/>
+      </collision>
+    </link>
+
+
+    <!--                         -->
+    <!--       YUMI STAND        -->
+    <!--                         -->
+
+    <joint name="stand_to_yumi" type="fixed">
+      <parent link="${stand_parent}"/>
+      <child link="stand"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+
+    <link name="stand">
+      <visual>
+        <origin rpy="0 0 ${PI}" xyz="0.14 0 -0.1525"/>
+        <origin rpy="0 0 ${PI}" xyz=""/>
+        <geometry>
+          <mesh filename="package://yumi_description/meshes/base/IRB14000_BaseStand_Fixed_own.stl"/>
+        </geometry>
+        <material name="Ivory"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 ${PI}" xyz="0.14 0 -0.1525"/>
+        <geometry>
+          <mesh filename="package://yumi_description/meshes/base/IRB14000_BaseStand_Fixed_own.stl"/>
+        </geometry>
+        <material name="Ivory"/>
+      </collision>
+    </link>
+
+  </xacro:macro>
+
+</robot>
+
+

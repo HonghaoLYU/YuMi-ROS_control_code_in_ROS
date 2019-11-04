@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ProductSettings version="1.0">
+  <Products>
+    <Product name="RobotWare" version="6.03.0140" id="abb.robotics.robotware">
+      <Settings>
+        <Setting id="abb.robotics.robotware.options.multitasking" displayName="623-1 Multitasking" robot="1" />
+        <Setting id="abb.robotics.robotware.options.multimove.coordinated" displayName="604-1 MultiMove Coordinated" robot="1" />
+        <Setting id="abb.robotics.robotware.options.absoluteaccuracy" displayName="603-1 Absolute Accuracy" robot="1" />
+        <Setting id="abb.robotics.robotware.options.collisiondetection" displayName="613-1 Collision Detection" robot="1" />
+        <Setting id="abb.robotics.robotware.options.devicenet.mssingle" displayName="709-1 DeviceNet Master/Slave" robot="1" />
+        <Setting id="abb.robotics.robotware.options.contact_l" displayName="Contact L" robot="1" />
+        <Setting id="abb.robotics.robotware.base" displayName="RobotWare Base" robot="1" />
+        <Setting id="abb.robotics.robotware.options.worldzones" displayName="608-1 World Zones" robot="1" />
+        <Setting id="abb.robotics.robotware.options.pathrecovery" displayName="611-1 Path Recovery" robot="1" />
+        <Setting id="abb.robotics.robotware.options.pathoffset" displayName="612-1 Path Offset" robot="1" />
+        <Setting id="abb.robotics.robotware.options.ethernetip.ms" displayName="841-1 EtherNet/IP Scanner/Adapter" robot="1" />
+        <Setting id="abb.robotics.robotware.options.integratedvision" displayName="1341-1/1520-1 Integrated Vision Interface" robot="1" />
+        <Setting id="abb.robotics.robotware.options.addinprepared" displayName="988-1 RW Add-In Prepared" robot="1" />
+        <Setting id="abb.robotics.robotware.options.rsappconnect" displayName="688-1 RobotStudio App Connect" robot="1" />
+        <Setting id="abb.robotics.robotware.options.flexpendantinterface" displayName="617-1 FlexPendant Interface" robot="1" />
+        <Setting id="abb.robotics.robotware.options.pcinterface" displayName="616-1 PC Interface" robot="1" />
+        <Setting id="abb.robotics.robotware.languages.english" displayName="English" robot="1" />
+        <Setting id="abb.robotics.robotware.robots.irb14000.0_5-0_5" displayName="IRB 14000-0.5/0.5" robot="1" />
+        <Setting id="abb.robotics.robotware.drivesystems.drive.dc7_24.du7_24.dm7_24" displayName="Drive System IRB 14000" robot="1" />
+        <Setting id="abb.robotics.robotware.options.calhall" displayName="Hall Sensor Calibration" robot="1" />
+      </Settings>
+    </Product>
+    <Product name="SmartGripperV3" version="3.10.0000.01" id="open.smartgripperv3">
+      <Settings>
+        <Setting id="open.smartgripperv3.open.smartgripperv3" displayName="SmartGripperV3.1" robot="1" />
+      </Settings>
+    </Product>
+  </Products>
+</ProductSettings>

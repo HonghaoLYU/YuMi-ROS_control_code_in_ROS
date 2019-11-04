@@ -1,0 +1,17 @@
+<launch>
+
+  <!-- Argument to determine if using a gripper or the camera assembly on left arm -->
+  <arg name="two_grippers" default="false"/>
+
+  <!-- Set the param that trajectory_execution_manager needs to find the controller plugin -->
+  <param name="moveit_controller_manager" value="moveit_fake_controller_manager/MoveItFakeControllerManager"/>
+
+  <!-- The rest of the params are specific to this plugin -->
+  <group unless="$(arg two_grippers)"> <!-- if using camera arm -->
+  	<rosparam file="$(find yumi_moveit_config)/config/fake_controllers_cameraArm.yaml"/>
+  </group>
+  <group if="$(arg two_grippers)"> <!-- if using two grippers -->
+  	<rosparam file="$(find yumi_moveit_config)/config/fake_controllers_twoGrippers.yaml"/>
+  </group>
+
+</launch>

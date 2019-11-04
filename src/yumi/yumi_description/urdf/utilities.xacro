@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!-- 
+  PROGRAMMER: Frederick Wachter
+  DATE CREATED: 2016-05-30
+  PURPOSE: Provide constants and modeling macros for YuMi
+  REFERENCE: https://github.com/rtkg/yumi
+-->
+
+<robot name="yumi" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Constants -->
+  <xacro:property name="PI" value="3.1415926535897931"/>
+  <xacro:property name="vi_namespace" value="vi_sensor"/>
+
+  <!-- Model Properties -->
+  <xacro:property name="hardware_interface" value="yumi"/>
+
+</robot>
+
+
