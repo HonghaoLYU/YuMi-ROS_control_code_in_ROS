@@ -14,7 +14,6 @@ import geometry_msgs.msg
 from math import pi
 from std_msgs.msg import String
 from std_msgs.msg import Float64MultiArray
-from datamessage.msg import bend
 from moveit_commander.conversions import pose_to_list
 from tf.transformations import euler_from_quaternion, quaternion_from_euler
 
@@ -44,16 +43,6 @@ def Neuron_callback(data):
     (Left_Qux, Left_Quy, Left_Quz, Left_Quw) = quaternion_from_euler(Left_Euz, -Left_Eux, Left_Euy)
 
 
-# 定义回调函数,订阅接受到的消息传给data
-def Glove_callback(data):
-    # 对全局变量进行赋值
-    global Rightfinger, Leftfinger, RightfingerT, LeftfingerT
-    Rightfinger = round(data.RI,3)
-    Leftfinger = round(data.LI,3)
-    RightfingerT = round(data.RT,3)
-    LeftfingerT = round(data.LT,3)
-
-
 class MoveGroupPythonInteface(object):
     def __init__(self):
         super(MoveGroupPythonInteface, self).__init__()
@@ -62,7 +51,6 @@ class MoveGroupPythonInteface(object):
         rospy.init_node('move_group_python_interface',anonymous=True)
         # 订阅话题
         rospy.Subscriber('yumiaction', Float64MultiArray, Neuron_callback)
-        rospy.Subscriber('dataglove', bend, Glove_callback)
         # 实例化 a `RobotCommander`_ 对象.
         robot = moveit_commander.RobotCommander()
         # 实例化 a `PlanningSceneInterface`_ 对象.
